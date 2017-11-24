@@ -1,3 +1,5 @@
+package com.fole;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -8,8 +10,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,18 +36,7 @@ public class Gui {
 
     private Map<String, String> replaceDictionary = new HashMap<>();
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("First Order Logic Editor");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setContentPane(new Gui().view);
-
-        frame.pack();
-        frame.setVisible(true);
-    }
-
     public Gui() {
-
         replaceDictionary.put("!!", NOT);
         replaceDictionary.put("=>", IMPLIES);
         replaceDictionary.put("||", OR);
@@ -120,6 +109,10 @@ public class Gui {
                             textArea.setText(textArea.getText().replace(s.getKey(), s.getValue()));
             }
         });
+    }
+
+    public JPanel getView() {
+        return view;
     }
 
     private void appendToText(String appendText) {
