@@ -105,8 +105,11 @@ public class Gui {
             public void keyTyped(KeyEvent e) {
                 if (replaceMode)
                     for (Map.Entry<String, String> s : replaceDictionary.entrySet())
-                        if (textArea.getText().contains(s.getKey()))
+                        if (textArea.getText().contains(s.getKey())) {
+                            int caretPosition = textArea.getCaretPosition();
                             textArea.setText(textArea.getText().replace(s.getKey(), s.getValue()));
+                            textArea.setCaretPosition(caretPosition - 1);
+                        }
             }
         });
     }
